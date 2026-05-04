@@ -34,24 +34,17 @@
             "link": "/collections/new-arrivals"
           }
         },
-        "pill_tops": {
-          "type": "pill",
-          "settings": {
-            "label": "Tops",
-            "link": "/collections/tops"
-          }
-        },
         "pill_bottoms": {
           "type": "pill",
           "settings": {
-            "label": "Bottoms",
+            "label": "Hoodies",
             "link": "/collections/bottoms"
           }
         },
         "pill_acc": {
           "type": "pill",
           "settings": {
-            "label": "Accessories",
+            "label": "T-Shirts",
             "link": "/collections/accessories"
           }
         },
@@ -65,7 +58,6 @@
       },
       "block_order": [
         "pill_na",
-        "pill_tops",
         "pill_bottoms",
         "pill_acc",
         "pill_sale"
