@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="{{ 'nc-homepage.css' | asset_url }}" media="all">
+
+<div
+  class="nc-pills"
+  style="--nc-pills-bg: {{ section.settings.background_color }};"
+  role="navigation"
+  aria-label="Shop categories"
+>
+  <div class="nc-pills__track">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'pill' -%}
+        <a
+          href="{{ block.settings.link | default: '/collections/all' }}"
+          class="nc-pills__pill"
+          {{ block.shopify_attributes }}
+        >
+          {{- block.settings.label -}}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .nc-pills {
+    background: var(--nc-pills-bg, #0a0a0a);
+    padding-block: 1.125rem;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nc-pills__track {
+    display: flex;
+    gap: 0.625rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+    scrollbar-width: none;
+  }
+
+  .nc-pills__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nc-pills__pill {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: inline-block;
+    padding: 0.5rem 1.375rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.55);
+    border-radius: 100px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-indent: 0.18em;
+    white-space: nowrap;
+    transition:
+      background 0.22s ease,
+      color 0.22s ease,
+      border-color 0.22s ease;
+  }
+
+  .nc-pills__pill:hover,
+  .nc-pills__pill:focus-visible {
+    background: #ffffff;
+    color: #0a0a0a;
+    border-color: #ffffff;
+    outline: none;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category Pills",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Collection pill",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "New Arrivals"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0a0a0a"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Pills",
+      "category": "t:categories.collection",
+      "blocks": {
+        "pill_na": {
+          "type": "pill",
+          "settings": { "label": "New Arrivals", "link": "/collections/new-arrivals" }
+        },
+        "pill_tops": {
+          "type": "pill",
+          "settings": { "label": "Tops", "link": "/collections/tops" }
+        },
+        "pill_bottoms": {
+          "type": "pill",
+          "settings": { "label": "Bottoms", "link": "/collections/bottoms" }
+        },
+        "pill_acc": {
+          "type": "pill",
+          "settings": { "label": "Accessories", "link": "/collections/accessories" }
+        },
+        "pill_sale": {
+          "type": "pill",
+          "settings": { "label": "Sale", "link": "/collections/sale" }
+        }
+      },
+      "block_order": ["pill_na", "pill_tops", "pill_bottoms", "pill_acc", "pill_sale"]
+    }
+  ]
+}
+{% endschema %}

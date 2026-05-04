@@ -1,0 +1,36 @@
+/* =============================================================================
+   Nawab & Co. — Homepage Design System
+   Shared tokens and utilities used across all nc-* sections.
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   Scroll-reveal animation
+   Elements with class `nc-fade-in` start invisible and slide up into view
+   once the IntersectionObserver (nc-animations.js) adds `nc-is-visible`.
+   ----------------------------------------------------------------------------- */
+.nc-fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nc-fade-in.nc-is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.nc-fade-in[data-delay="1"] { transition-delay: 0.08s; }
+.nc-fade-in[data-delay="2"] { transition-delay: 0.16s; }
+.nc-fade-in[data-delay="3"] { transition-delay: 0.24s; }
+.nc-fade-in[data-delay="4"] { transition-delay: 0.32s; }
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .nc-fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

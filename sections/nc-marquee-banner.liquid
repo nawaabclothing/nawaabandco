@@ -1,0 +1,219 @@
+{%- liquid
+  assign speed     = section.settings.speed
+  assign separator = section.settings.separator | default: '✦'
+  assign has_items = false
+  if section.blocks.size > 0
+    assign has_items = true
+  endif
+-%}
+
+<div
+  class="nc-marquee"
+  style="
+    --nc-marquee-speed: {{ speed }}s;
+    --nc-marquee-bg: {{ section.settings.background_color }};
+    --nc-marquee-color: {{ section.settings.text_color }};
+    padding-block: {{ section.settings.padding_top }}px {{ section.settings.padding_bottom }}px;
+  "
+  aria-label="{{ section.settings.aria_label | default: 'Announcements' }}"
+  role="marquee"
+>
+  {%- if has_items -%}
+    <div class="nc-marquee__track" aria-hidden="true">
+      {%- comment -%}
+        Content repeated 4× so the strip always fills the screen at any viewport width.
+        Only the first copy is visible to assistive technology (see below).
+      {%- endcomment -%}
+      {%- for repeat in (1..4) -%}
+        <span class="nc-marquee__group">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'item' -%}
+              <span class="nc-marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+              <span class="nc-marquee__sep" aria-hidden="true">{{ separator }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        </span>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      Screen-reader friendly static version — visually hidden but announced once.
+    {%- endcomment -%}
+    <ul class="nc-marquee__sr-list visually-hidden">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'item' -%}
+          <li>{{ block.settings.text }}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .nc-marquee {
+    background: var(--nc-marquee-bg, #0a0a0a);
+    color: var(--nc-marquee-color, #ffffff);
+    overflow: hidden;
+    border-block: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .nc-marquee__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .nc-marquee__track {
+      animation: nc-marquee-run var(--nc-marquee-speed, 28s) linear infinite;
+    }
+  }
+
+  @keyframes nc-marquee-run {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-25%); }
+  }
+
+  .nc-marquee__group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding-inline-end: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .nc-marquee__item {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-indent: 0.2em;
+    white-space: nowrap;
+    color: inherit;
+  }
+
+  .nc-marquee__sep {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Marquee Banner",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Announcement item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping on orders over ₹999"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll speed",
+      "info": "Lower = faster",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "default": 28
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator character",
+      "default": "✦"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessible label",
+      "default": "Store announcements"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Banner",
+      "category": "t:categories.text",
+      "blocks": {
+        "item_ship": {
+          "type": "item",
+          "settings": { "text": "Free Shipping On Orders Over ₹999" }
+        },
+        "item_returns": {
+          "type": "item",
+          "settings": { "text": "Easy 7-Day Returns" }
+        },
+        "item_drops": {
+          "type": "item",
+          "settings": { "text": "New Drops Every Friday" }
+        },
+        "item_secure": {
+          "type": "item",
+          "settings": { "text": "Secure Checkout" }
+        }
+      },
+      "block_order": ["item_ship", "item_returns", "item_drops", "item_secure"]
+    }
+  ]
+}
+{% endschema %}

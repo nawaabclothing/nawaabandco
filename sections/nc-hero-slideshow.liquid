@@ -1,0 +1,338 @@
+<link rel="stylesheet" href="{{ 'nc-homepage.css' | asset_url }}" media="all">
+<script src="{{ 'nc-hero-slideshow.js' | asset_url }}" type="module"></script>
+
+{%- liquid
+  assign slide_count = 0
+  for i in (1..5)
+    assign img_key = 'image_' | append: i
+    if section.settings[img_key] != blank
+      assign slide_count = slide_count | plus: 1
+    endif
+  endfor
+-%}
+
+<nc-hero-slideshow
+  class="nc-hero"
+  data-speed="{{ section.settings.slide_speed | times: 1000 }}"
+  style="
+    --nc-hero-height: {{ section.settings.height }}vh;
+    --nc-overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  "
+>
+  <div class="nc-hero__slides">
+    {%- for i in (1..5) -%}
+      {%- liquid
+        assign img_key = 'image_' | append: i
+        assign img    = section.settings[img_key]
+      -%}
+      {%- if img != blank -%}
+        <div
+          class="nc-hero__slide{% if forloop.first %} nc-hero__slide--active{% endif %}"
+          ref="slides[]"
+        >
+          {{-
+            img
+            | image_url: width: 2400
+            | image_tag:
+              loading: 'eager',
+              fetchpriority: 'high',
+              class: 'nc-hero__image',
+              sizes: '100vw',
+              widths: '750,1100,1500,1780,2000,2400',
+              alt: img.alt | default: shop.name
+          -}}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="nc-hero__overlay" aria-hidden="true"></div>
+
+  <div class="nc-hero__content">
+    {%- if settings.logo != blank -%}
+      <div class="nc-hero__logo">
+        {{-
+          settings.logo
+          | image_url: width: 480
+          | image_tag:
+            loading: 'eager',
+            class: 'nc-hero__logo-img',
+            alt: shop.name,
+            widths: '240,360,480'
+        -}}
+      </div>
+    {%- else -%}
+      <span class="nc-hero__brand-name">{{ shop.name | upcase }}</span>
+    {%- endif -%}
+
+    {%- if section.settings.cta_text != blank -%}
+      <a
+        href="{{ section.settings.cta_link | default: '/collections/all' }}"
+        class="nc-hero__cta"
+      >
+        {{- section.settings.cta_text -}}
+      </a>
+    {%- endif -%}
+  </div>
+
+  {%- if slide_count > 1 -%}
+    <div
+      class="nc-hero__dots"
+      on:click/handleDotClick
+      aria-label="Slideshow navigation"
+    >
+      {%- for i in (1..5) -%}
+        {%- liquid
+          assign img_key = 'image_' | append: i
+          assign img    = section.settings[img_key]
+        -%}
+        {%- if img != blank -%}
+          {%- assign dot_index = forloop.index | minus: 1 -%}
+          <button
+            class="nc-hero__dot{% if forloop.first %} nc-hero__dot--active{% endif %}"
+            ref="dots[]"
+            data-index="{{ dot_index }}"
+            aria-label="Go to slide {{ forloop.index }}"
+            type="button"
+          ></button>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</nc-hero-slideshow>
+
+{% stylesheet %}
+  nc-hero-slideshow,
+  .nc-hero {
+    display: block;
+    position: relative;
+    height: var(--nc-hero-height, 100vh);
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  .nc-hero__slides {
+    position: absolute;
+    inset: 0;
+  }
+
+  .nc-hero__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nc-hero__slide--active {
+    opacity: 1;
+  }
+
+  .nc-hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .nc-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, calc(var(--nc-overlay-opacity, 0.6) * 0.55)) 45%,
+      rgba(0, 0, 0, var(--nc-overlay-opacity, 0.6)) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .nc-hero__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.25rem;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .nc-hero__logo-img {
+    height: clamp(36px, 7vw, 72px);
+    width: auto;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+  }
+
+  .nc-hero__brand-name {
+    display: block;
+    font-size: clamp(2rem, 9vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 0.35em;
+    color: #ffffff;
+    line-height: 1;
+    text-indent: 0.35em;
+  }
+
+  .nc-hero__cta {
+    display: inline-block;
+    padding: 0.9rem 3.25rem;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    text-indent: 0.28em;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .nc-hero__cta:hover,
+  .nc-hero__cta:focus-visible {
+    background: #ffffff;
+    color: #0a0a0a;
+    outline: none;
+  }
+
+  .nc-hero__dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+  }
+
+  .nc-hero__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    -webkit-appearance: none;
+  }
+
+  .nc-hero__dot--active {
+    background: #ffffff;
+    transform: scale(1.5);
+  }
+
+  .nc-hero__dot:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-hero__slide {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero Slideshow",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Slides"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "range",
+      "id": "slide_speed",
+      "label": "Seconds per slide",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Overlay"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Slideshow",
+      "category": "t:categories.banners"
+    }
+  ]
+}
+{% endschema %}

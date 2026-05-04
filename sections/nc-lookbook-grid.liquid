@@ -1,0 +1,283 @@
+<link rel="stylesheet" href="{{ 'nc-homepage.css' | asset_url }}" media="all">
+<script src="{{ 'nc-animations.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+<section
+  class="nc-lookbook"
+  style="
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  {%- if section.settings.title != blank -%}
+    <div class="nc-lookbook__heading nc-fade-in">
+      <h2 class="nc-lookbook__title">{{ section.settings.title | upcase }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="nc-lookbook__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="nc-lookbook__grid">
+    {%- for i in (1..8) -%}
+      {%- liquid
+        assign img_key  = 'image_' | append: i
+        assign link_key = 'link_' | append: i
+        assign img      = section.settings[img_key]
+        assign lnk      = section.settings[link_key]
+      -%}
+      {%- if img != blank -%}
+        <div class="nc-lookbook__item nc-fade-in" data-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
+          {%- if lnk != blank -%}
+            <a href="{{ lnk }}" class="nc-lookbook__link" tabindex="0">
+          {%- else -%}
+            <div class="nc-lookbook__link">
+          {%- endif -%}
+
+            {{-
+              img
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: 'nc-lookbook__img nc-parallax-img',
+                sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                widths: '400,600,800,1000,1200',
+                alt: img.alt | default: section.settings.title
+            -}}
+
+          {%- if lnk != blank -%}
+            </a>
+          {%- else -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .nc-lookbook {
+    background: #0a0a0a;
+    color: #ffffff;
+  }
+
+  .nc-lookbook__heading {
+    text-align: center;
+    padding-inline: 1.5rem;
+    margin-block-end: 2.5rem;
+  }
+
+  .nc-lookbook__title {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.25rem, 3vw, 2.25rem);
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-indent: 0.22em;
+    color: #ffffff;
+    line-height: 1;
+  }
+
+  .nc-lookbook__subtitle {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+  }
+
+  /* CSS-native masonry via columns */
+  .nc-lookbook__grid {
+    columns: 2;
+    column-gap: 3px;
+    padding-inline: 3px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nc-lookbook__grid {
+      columns: 3;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .nc-lookbook__grid {
+      columns: 4;
+    }
+  }
+
+  .nc-lookbook__item {
+    break-inside: avoid;
+    margin-block-end: 3px;
+    overflow: hidden;
+  }
+
+  .nc-lookbook__link {
+    display: block;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .nc-lookbook__link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+
+  .nc-lookbook__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* scale slightly larger so parallax shift stays within bounds */
+    transform: translateY(0) scale(1.12);
+    transform-origin: center center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Hover zoom on top of parallax */
+  .nc-lookbook__link:hover .nc-lookbook__img {
+    transform: scale(1.17);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-lookbook__img {
+      transform: none !important;
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Lookbook Grid",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Lookbook"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Link 1 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Link 2 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Link 3 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Link 4 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "url",
+      "id": "link_5",
+      "label": "Link 5 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    },
+    {
+      "type": "url",
+      "id": "link_6",
+      "label": "Link 6 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"
+    },
+    {
+      "type": "url",
+      "id": "link_7",
+      "label": "Link 7 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image 8"
+    },
+    {
+      "type": "url",
+      "id": "link_8",
+      "label": "Link 8 (optional)"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook Grid",
+      "category": "t:categories.storytelling"
+    }
+  ]
+}
+{% endschema %}

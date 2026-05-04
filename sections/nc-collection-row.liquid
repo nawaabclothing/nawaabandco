@@ -1,0 +1,359 @@
+<link rel="stylesheet" href="{{ 'nc-homepage.css' | asset_url }}" media="all">
+<script src="{{ 'nc-animations.js' | asset_url }}" type="module" fetchpriority="low"></script>
+
+{%- liquid
+  assign col       = section.settings.collection
+  assign products  = col.products
+  assign row_title = section.settings.title | default: col.title
+  assign max_prods = section.settings.max_products
+-%}
+
+<section
+  class="nc-row"
+  style="
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+  "
+>
+  {%- if row_title != blank or section.settings.show_view_all -%}
+    <div class="nc-row__header nc-fade-in">
+      {%- if row_title != blank -%}
+        <h2 class="nc-row__title">{{ row_title | upcase }}</h2>
+      {%- endif -%}
+      {%- if section.settings.show_view_all and col != blank -%}
+        <a href="{{ col.url }}" class="nc-row__view-all">View All</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="nc-row__track" role="list">
+    {%- for product in products limit: max_prods -%}
+      {%- assign delay = forloop.index | modulo: 4 | plus: 1 -%}
+      <article
+        class="nc-card nc-fade-in"
+        data-delay="{{ delay }}"
+        role="listitem"
+      >
+        <a href="{{ product.url }}" class="nc-card__media" aria-label="{{ product.title }}">
+          {%- if product.featured_image != blank -%}
+            {{-
+              product.featured_image
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                class: 'nc-card__img nc-card__img--primary',
+                sizes: '(min-width: 750px) 280px, 62vw',
+                widths: '280,420,560,800',
+                alt: product.featured_image.alt | default: product.title
+            -}}
+          {%- else -%}
+            <div class="nc-card__img nc-card__img--primary nc-card__img--blank"></div>
+          {%- endif -%}
+
+          {%- if product.images.size > 1 -%}
+            {{-
+              product.images[1]
+              | image_url: width: 800
+              | image_tag:
+                loading: 'lazy',
+                class: 'nc-card__img nc-card__img--secondary',
+                sizes: '(min-width: 750px) 280px, 62vw',
+                widths: '280,420,560,800',
+                alt: product.images[1].alt | default: product.title
+            -}}
+          {%- endif -%}
+
+          {%- if product.compare_at_price > product.price -%}
+            <span class="nc-card__badge" aria-label="On sale">SALE</span>
+          {%- endif -%}
+        </a>
+
+        <div class="nc-card__info">
+          <p class="nc-card__name">
+            <a href="{{ product.url }}" class="nc-card__name-link">{{ product.title }}</a>
+          </p>
+          <div class="nc-card__price">
+            {%- if product.compare_at_price > product.price -%}
+              <span class="nc-card__price--sale">{{ product.price | money }}</span>
+              <s class="nc-card__price--compare">{{ product.compare_at_price | money }}</s>
+            {%- else -%}
+              <span>{{ product.price | money }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      </article>
+    {%- else -%}
+      {%- if col == blank -%}
+        <p class="nc-row__empty">Select a collection in the theme editor.</p>
+      {%- else -%}
+        <p class="nc-row__empty">No products in this collection.</p>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .nc-row {
+    background: #0a0a0a;
+    color: #ffffff;
+  }
+
+  .nc-row__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+    margin-block-end: 1.375rem;
+    max-width: var(--normal-page-width, 120rem);
+    margin-inline: auto;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nc-row__header {
+      padding-inline: max(2rem, env(safe-area-inset-left));
+    }
+  }
+
+  .nc-row__title {
+    margin: 0;
+    font-size: clamp(1.1rem, 2.6vw, 1.75rem);
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-indent: 0.14em;
+    color: #ffffff;
+    line-height: 1.1;
+  }
+
+  .nc-row__view-all {
+    flex-shrink: 0;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    border-block-end: 1px solid rgba(255, 255, 255, 0.25);
+    padding-block-end: 1px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nc-row__view-all:hover,
+  .nc-row__view-all:focus-visible {
+    color: #ffffff;
+    border-color: #ffffff;
+    outline: none;
+  }
+
+  .nc-row__track {
+    display: flex;
+    gap: 0.625rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+    padding-block-end: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .nc-row__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nc-row__track {
+      padding-inline: max(2rem, env(safe-area-inset-left));
+      gap: 0.875rem;
+    }
+  }
+
+  .nc-row__empty {
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 0.85rem;
+    padding-inline: max(1.25rem, env(safe-area-inset-left));
+  }
+
+  /* Product card */
+  .nc-card {
+    flex-shrink: 0;
+    width: clamp(185px, 57vw, 265px);
+    scroll-snap-align: start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .nc-card {
+      width: clamp(220px, 22vw, 300px);
+    }
+  }
+
+  .nc-card__media {
+    display: block;
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #111111;
+    text-decoration: none;
+  }
+
+  .nc-card__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .nc-card__img--primary {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nc-card__img--secondary {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+
+  .nc-card__img--blank {
+    background: #1a1a1a;
+  }
+
+  .nc-card__media:hover .nc-card__img--secondary,
+  .nc-card__media:focus-visible .nc-card__img--secondary {
+    opacity: 1;
+  }
+
+  .nc-card__media:hover .nc-card__img--primary {
+    transform: scale(1.04);
+  }
+
+  .nc-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    inset-inline-start: 0.75rem;
+    z-index: 3;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-indent: 0.14em;
+    padding: 0.28rem 0.65rem;
+  }
+
+  .nc-card__info {
+    padding-block: 0.75rem 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .nc-card__name {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .nc-card__name-link {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .nc-card__name-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .nc-card__price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .nc-card__price--sale {
+    color: #ffffff;
+  }
+
+  .nc-card__price--compare {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Row",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "info": "Leave blank to use the collection title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show \"View All\" link",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Max products shown",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 56
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Row",
+      "category": "t:categories.products"
+    }
+  ]
+}
+{% endschema %}
