@@ -13,6 +13,7 @@
       "type": "nc-hero-slideshow",
       "settings": {
         "image_1": "shopify://shop_images/hero1.png",
+        "image_2": "shopify://shop_images/hero2.png",
         "slide_speed": 4,
         "height": 100,
         "overlay_opacity": 60,
