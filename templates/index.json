@@ -137,9 +137,13 @@
       "settings": {
         "title": "Lookbook",
         "subtitle": "The collection in the wild",
+        "image_1": "shopify://shop_images/hoodie_pic_2.jpg",
         "link_1": "",
+        "image_2": "shopify://shop_images/black_tshirt_3.png",
         "link_2": "",
+        "image_3": "shopify://shop_images/lookbook3.jpg",
         "link_3": "",
+        "image_4": "shopify://shop_images/lookbook5.jpg",
         "link_4": "",
         "link_5": "",
         "link_6": "",
