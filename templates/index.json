@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "nc_hero_BqMxPL": {
       "type": "nc-hero-slideshow",
       "settings": {
+        "image_1": "shopify://shop_images/hero1.png",
         "slide_speed": 4,
         "height": 100,
         "overlay_opacity": 60,
@@ -49,7 +59,13 @@
           }
         }
       },
-      "block_order": ["pill_na", "pill_tops", "pill_bottoms", "pill_acc", "pill_sale"],
+      "block_order": [
+        "pill_na",
+        "pill_tops",
+        "pill_bottoms",
+        "pill_acc",
+        "pill_sale"
+      ],
       "settings": {
         "background_color": "#0a0a0a"
       }
@@ -104,7 +120,12 @@
           }
         }
       },
-      "block_order": ["item_ship", "item_returns", "item_drops", "item_secure"],
+      "block_order": [
+        "item_ship",
+        "item_returns",
+        "item_drops",
+        "item_secure"
+      ],
       "settings": {
         "speed": 28,
         "separator": "✦",
@@ -120,6 +141,14 @@
       "settings": {
         "title": "Lookbook",
         "subtitle": "The collection in the wild",
+        "link_1": "",
+        "link_2": "",
+        "link_3": "",
+        "link_4": "",
+        "link_5": "",
+        "link_6": "",
+        "link_7": "",
+        "link_8": "",
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -140,7 +169,9 @@
             "link_label_4": "Accessories",
             "link_url_4": "/collections/accessories",
             "link_label_5": "Sale",
-            "link_url_5": "/collections/sale"
+            "link_url_5": "/collections/sale",
+            "link_label_6": "",
+            "link_url_6": ""
           }
         },
         "col_help": {
@@ -154,7 +185,11 @@
             "link_label_3": "FAQ",
             "link_url_3": "/pages/faq",
             "link_label_4": "Contact Us",
-            "link_url_4": "/pages/contact"
+            "link_url_4": "/pages/contact",
+            "link_label_5": "",
+            "link_url_5": "",
+            "link_label_6": "",
+            "link_url_6": ""
           }
         },
         "col_about": {
@@ -166,17 +201,32 @@
             "link_label_2": "Sustainability",
             "link_url_2": "/pages/sustainability",
             "link_label_3": "Careers",
-            "link_url_3": "/pages/careers"
+            "link_url_3": "/pages/careers",
+            "link_label_4": "",
+            "link_url_4": "",
+            "link_label_5": "",
+            "link_url_5": "",
+            "link_label_6": "",
+            "link_url_6": ""
           }
         }
       },
-      "block_order": ["col_shop", "col_help", "col_about"],
+      "block_order": [
+        "col_shop",
+        "col_help",
+        "col_about"
+      ],
       "settings": {
         "tagline": "Premium streetwear from India",
         "show_newsletter": true,
         "newsletter_heading": "Stay in the loop",
         "newsletter_placeholder": "your@email.com",
         "newsletter_success": "Thanks for subscribing.",
+        "instagram_url": "",
+        "twitter_url": "",
+        "facebook_url": "",
+        "youtube_url": "",
+        "tiktok_url": "",
         "copyright_extra": "All rights reserved."
       }
     }
