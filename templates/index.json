@@ -14,6 +14,8 @@
       "settings": {
         "image_1": "shopify://shop_images/hero1.png",
         "image_2": "shopify://shop_images/hero2.png",
+        "image_3": "shopify://shop_images/hero3.png",
+        "image_4": "shopify://shop_images/hero4.png",
         "slide_speed": 4,
         "height": 100,
         "overlay_opacity": 60,
