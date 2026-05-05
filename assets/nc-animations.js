@@ -1,5 +1,5 @@
 /**
- * Nawab & Co. — Scroll & parallax animations
+ * Nawaab & Co. — Scroll & parallax animations
  *
  * Wires up IntersectionObserver for .nc-fade-in elements and a lightweight
  * rAF-based parallax for .nc-parallax-img elements inside lookbook grids.

@@ -22,25 +22,36 @@
   <div class="nc-hero__slides">
     {%- for i in (1..5) -%}
       {%- liquid
-        assign img_key = 'image_' | append: i
-        assign img    = section.settings[img_key]
+        assign img_key        = 'image_' | append: i
+        assign mobile_img_key = 'mobile_image_' | append: i
+        assign img            = section.settings[img_key]
+        assign mobile_img     = section.settings[mobile_img_key]
       -%}
       {%- if img != blank -%}
         <div
           class="nc-hero__slide{% if forloop.first %} nc-hero__slide--active{% endif %}"
           ref="slides[]"
         >
-          {{-
-            img
-            | image_url: width: 2400
-            | image_tag:
-              loading: 'eager',
-              fetchpriority: 'high',
-              class: 'nc-hero__image',
-              sizes: '100vw',
-              widths: '750,1100,1500,1780,2000,2400',
-              alt: img.alt | default: shop.name
-          -}}
+          <picture>
+            {%- if mobile_img != blank -%}
+              <source
+                media="(max-width: 767px)"
+                srcset="{{ mobile_img | image_url: width: 375 }} 375w, {{ mobile_img | image_url: width: 750 }} 750w, {{ mobile_img | image_url: width: 1100 }} 1100w"
+                sizes="100vw"
+              >
+            {%- endif -%}
+            {{-
+              img
+              | image_url: width: 2400
+              | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                class: 'nc-hero__image',
+                sizes: '100vw',
+                widths: '750,1100,1500,1780,2000,2400',
+                alt: img.alt | default: shop.name
+            -}}
+          </picture>
         </div>
       {%- endif -%}
     {%- endfor -%}
@@ -131,7 +142,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
   }
 
   .nc-hero__overlay {
@@ -231,6 +242,22 @@
     outline-offset: 3px;
   }
 
+  @media (max-width: 767px) {
+    nc-hero-slideshow,
+    .nc-hero {
+      height: 85vh;
+    }
+
+    .nc-hero__content {
+      gap: 1.5rem;
+      padding-inline: 1.5rem;
+    }
+
+    .nc-hero__cta {
+      padding: 0.8rem 2rem;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .nc-hero__slide {
       transition: none;
@@ -247,7 +274,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "Slides"
+      "content": "Desktop Slides"
     },
     {
       "type": "image_picker",
@@ -273,6 +300,39 @@
       "type": "image_picker",
       "id": "image_5",
       "label": "Image 5"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Images"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upload portrait images for mobile. If left empty, the desktop image is used instead."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_1",
+      "label": "Mobile Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_2",
+      "label": "Mobile Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_3",
+      "label": "Mobile Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_4",
+      "label": "Mobile Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image_5",
+      "label": "Mobile Image 5"
     },
     {
       "type": "range",

@@ -18,42 +18,106 @@
   {%- endif -%}
 
   <div class="nc-lookbook__grid">
-    {%- for i in (1..8) -%}
+    {%- for block in section.blocks -%}
       {%- liquid
-        assign img_key  = 'image_' | append: i
-        assign link_key = 'link_' | append: i
-        assign img      = section.settings[img_key]
-        assign lnk      = section.settings[link_key]
+        assign is_video = false
+        if block.settings.media_type == 'video' and block.settings.video_url != blank
+          assign is_video = true
+        endif
+        assign has_media = is_video
+        unless has_media
+          if block.settings.image != blank
+            assign has_media = true
+          endif
+        endunless
+        assign has_ig_link = false
+        if block.settings.instagram_url != blank
+          assign has_ig_link = true
+        endif
       -%}
-      {%- if img != blank -%}
-        <div class="nc-lookbook__item nc-fade-in" data-delay="{{ forloop.index | modulo: 4 | plus: 1 }}">
-          {%- if lnk != blank -%}
-            <a href="{{ lnk }}" class="nc-lookbook__link" tabindex="0">
-          {%- else -%}
-            <div class="nc-lookbook__link">
-          {%- endif -%}
-
-            {{-
-              img
-              | image_url: width: 1200
-              | image_tag:
-                loading: 'lazy',
-                class: 'nc-lookbook__img nc-parallax-img',
-                sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
-                widths: '400,600,800,1000,1200',
-                alt: img.alt | default: section.settings.title
-            -}}
-
-          {%- if lnk != blank -%}
-            </a>
-          {%- else -%}
-            </div>
-          {%- endif -%}
+      {%- if has_media -%}
+        <div
+          class="nc-lookbook__item nc-fade-in"
+          data-delay="{{ forloop.index | modulo: 4 | plus: 1 }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="nc-lookbook__link">
+            {%- if is_video -%}
+              <video
+                class="nc-lookbook__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                tabindex="0"
+                aria-label="Lookbook video. Press Enter or Space to toggle sound."
+                data-nc-video
+              >
+                <source src="{{ block.settings.video_url }}" type="video/mp4">
+              </video>
+              <span class="nc-lookbook__mute-indicator" aria-hidden="true">
+                <svg class="nc-icon-muted" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <line x1="23" y1="9" x2="17" y2="15"/>
+                  <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+                <svg class="nc-icon-unmuted" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+              </span>
+            {%- else -%}
+              {{-
+                block.settings.image
+                | image_url: width: 1200
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'nc-lookbook__img nc-parallax-img',
+                  sizes: '(min-width: 990px) 33vw, (min-width: 750px) 50vw, 100vw',
+                  widths: '400,600,800,1000,1200',
+                  alt: block.settings.image.alt | default: section.settings.title
+              -}}
+            {%- endif -%}
+            {%- if has_ig_link -%}
+              <a
+                href="{{ block.settings.instagram_url }}"
+                class="nc-lookbook__ig-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View on Instagram"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+            {%- endif -%}
+          </div>
         </div>
       {%- endif -%}
     {%- endfor -%}
   </div>
 </section>
+
+<script type="module">
+  const section = document.getElementById('shopify-section-{{ section.id }}');
+  for (const video of section.querySelectorAll('[data-nc-video]')) {
+    const item = video.closest('.nc-lookbook__item');
+    const toggle = () => {
+      video.muted = !video.muted;
+      item.classList.toggle('nc-lookbook__item--unmuted', !video.muted);
+    };
+    video.addEventListener('click', toggle);
+    video.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  }
+</script>
 
 {% stylesheet %}
   .nc-lookbook {
@@ -117,11 +181,7 @@
     position: relative;
   }
 
-  .nc-lookbook__link:focus-visible {
-    outline: 2px solid #ffffff;
-    outline-offset: -2px;
-  }
-
+  /* Images */
   .nc-lookbook__img {
     display: block;
     width: 100%;
@@ -133,13 +193,92 @@
     will-change: transform;
   }
 
-  /* Hover zoom on top of parallax */
   .nc-lookbook__link:hover .nc-lookbook__img {
     transform: scale(1.17);
   }
 
+  /* Videos */
+  .nc-lookbook__video {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transform: scale(1.12);
+    transform-origin: center center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  .nc-lookbook__link:hover .nc-lookbook__video {
+    transform: scale(1.17);
+  }
+
+  .nc-lookbook__video:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+  }
+
+  /* Mute/unmute indicator */
+  .nc-lookbook__mute-indicator {
+    position: absolute;
+    bottom: 0.5rem;
+    inset-inline-start: 0.5rem;
+    z-index: 2;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.55);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+  }
+
+  .nc-lookbook__mute-indicator .nc-icon-unmuted {
+    display: none;
+  }
+
+  .nc-lookbook__item--unmuted .nc-lookbook__mute-indicator .nc-icon-muted {
+    display: none;
+  }
+
+  .nc-lookbook__item--unmuted .nc-lookbook__mute-indicator .nc-icon-unmuted {
+    display: block;
+  }
+
+  /* Instagram icon overlay */
+  .nc-lookbook__ig-btn {
+    position: absolute;
+    bottom: 0.5rem;
+    inset-inline-end: 0.5rem;
+    z-index: 2;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.55);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
+    transition: background 0.25s ease;
+  }
+
+  .nc-lookbook__ig-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .nc-lookbook__ig-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .nc-lookbook__img {
+    .nc-lookbook__img,
+    .nc-lookbook__video {
       transform: none !important;
       transition: none;
     }
@@ -152,6 +291,46 @@
   "disabled_on": {
     "groups": ["header", "footer"]
   },
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "media",
+      "name": "Media Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "media_type",
+          "label": "Media type",
+          "options": [
+            {
+              "value": "image",
+              "label": "Image"
+            },
+            {
+              "value": "video",
+              "label": "Video"
+            }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL (MP4)"
+        },
+        {
+          "type": "url",
+          "id": "instagram_url",
+          "label": "Instagram URL (optional)"
+        }
+      ]
+    }
+  ],
   "settings": [
     {
       "type": "text",
@@ -163,90 +342,6 @@
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle"
-    },
-    {
-      "type": "header",
-      "content": "Images"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Image 1"
-    },
-    {
-      "type": "url",
-      "id": "link_1",
-      "label": "Link 1 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Image 2"
-    },
-    {
-      "type": "url",
-      "id": "link_2",
-      "label": "Link 2 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_3",
-      "label": "Image 3"
-    },
-    {
-      "type": "url",
-      "id": "link_3",
-      "label": "Link 3 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_4",
-      "label": "Image 4"
-    },
-    {
-      "type": "url",
-      "id": "link_4",
-      "label": "Link 4 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_5",
-      "label": "Image 5"
-    },
-    {
-      "type": "url",
-      "id": "link_5",
-      "label": "Link 5 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_6",
-      "label": "Image 6"
-    },
-    {
-      "type": "url",
-      "id": "link_6",
-      "label": "Link 6 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_7",
-      "label": "Image 7"
-    },
-    {
-      "type": "url",
-      "id": "link_7",
-      "label": "Link 7 (optional)"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_8",
-      "label": "Image 8"
-    },
-    {
-      "type": "url",
-      "id": "link_8",
-      "label": "Link 8 (optional)"
     },
     {
       "type": "header",
@@ -276,7 +371,13 @@
   "presets": [
     {
       "name": "Lookbook Grid",
-      "category": "t:categories.storytelling"
+      "category": "t:categories.storytelling",
+      "blocks": [
+        {"type": "media"},
+        {"type": "media"},
+        {"type": "media"},
+        {"type": "media"}
+      ]
     }
   ]
 }
