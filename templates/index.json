@@ -28,6 +28,50 @@
         "cta_link": "/collections/all"
       }
     },
+    "nc_marquee_banner_n7iPaF": {
+      "type": "nc-marquee-banner",
+      "blocks": {
+        "item_m4jryr": {
+          "type": "item",
+          "settings": {
+            "text": "Power"
+          }
+        },
+        "item_Edd4W3": {
+          "type": "item",
+          "settings": {
+            "text": "Dominance"
+          }
+        },
+        "item_cJMnat": {
+          "type": "item",
+          "settings": {
+            "text": "Precision"
+          }
+        },
+        "item_CQHj86": {
+          "type": "item",
+          "settings": {
+            "text": "control"
+          }
+        }
+      },
+      "block_order": [
+        "item_m4jryr",
+        "item_Edd4W3",
+        "item_cJMnat",
+        "item_CQHj86"
+      ],
+      "settings": {
+        "speed": 28,
+        "separator": "✦",
+        "background_color": "#0a0a0a",
+        "text_color": "#ffffff",
+        "aria_label": "Store announcements",
+        "padding_top": 14,
+        "padding_bottom": 14
+      }
+    },
     "nc_pills_TzKnWY": {
       "type": "nc-category-pills",
       "blocks": {
@@ -95,22 +139,10 @@
     "nc_marquee_NkHrYs": {
       "type": "nc-marquee-banner",
       "blocks": {
-        "item_ship": {
-          "type": "item",
-          "settings": {
-            "text": "Free Shipping On Orders Over ₹999"
-          }
-        },
         "item_returns": {
           "type": "item",
           "settings": {
             "text": "Easy 7-Day Returns"
-          }
-        },
-        "item_drops": {
-          "type": "item",
-          "settings": {
-            "text": "New Drops Every Friday"
           }
         },
         "item_secure": {
@@ -121,9 +153,7 @@
         }
       },
       "block_order": [
-        "item_ship",
         "item_returns",
-        "item_drops",
         "item_secure"
       ],
       "settings": {
@@ -238,6 +268,7 @@
   },
   "order": [
     "nc_hero_BqMxPL",
+    "nc_marquee_banner_n7iPaF",
     "nc_pills_TzKnWY",
     "nc_row_RvXcDp",
     "nc_row2_HmJqWn",
