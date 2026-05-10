@@ -52,7 +52,7 @@
         "item_CQHj86": {
           "type": "item",
           "settings": {
-            "text": "control"
+            "text": "CONTROL"
           }
         }
       },
@@ -77,7 +77,7 @@
       "settings": {
         "collection": "all",
         "title": "",
-        "show_view_all": true,
+        "show_view_all": false,
         "max_products": 8,
         "padding_top": 56,
         "padding_bottom": 20
