@@ -117,9 +117,9 @@
             "color_scheme": "",
             "padding-block-start": 8,
             "padding-block-end": 8,
-            "padding-inline-start": 0,
+            "padding-inline-start": 50,
             "padding-inline-end": 0,
-            "facets_margin_bottom": 8,
+            "facets_margin_bottom": 5,
             "facets_margin_right": 20
           },
           "blocks": {}
