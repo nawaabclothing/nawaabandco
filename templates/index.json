@@ -91,10 +91,17 @@
           "settings": {
             "text": "Secure Checkout"
           }
+        },
+        "item_NgnmFQ": {
+          "type": "item",
+          "settings": {
+            "text": "Secure Checkout"
+          }
         }
       },
       "block_order": [
-        "item_secure"
+        "item_secure",
+        "item_NgnmFQ"
       ],
       "settings": {
         "speed": 28,
