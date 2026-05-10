@@ -231,12 +231,12 @@
         "col_about"
       ],
       "settings": {
-        "tagline": "Premium Luxury",
+        "tagline": "",
         "show_newsletter": true,
         "newsletter_heading": "Stay in the loop",
         "newsletter_placeholder": "your@email.com",
         "newsletter_success": "Thanks for subscribing.",
-        "instagram_url": "",
+        "instagram_url": "https://www,instagram.com/nawab_and_co",
         "twitter_url": "",
         "facebook_url": "",
         "youtube_url": "",
