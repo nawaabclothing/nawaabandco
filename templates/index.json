@@ -72,40 +72,6 @@
         "padding_bottom": 14
       }
     },
-    "nc_pills_TzKnWY": {
-      "type": "nc-category-pills",
-      "blocks": {
-        "pill_na": {
-          "type": "pill",
-          "settings": {
-            "label": "New Arrivals",
-            "link": "/collections/new-arrivals"
-          }
-        },
-        "pill_bottoms": {
-          "type": "pill",
-          "settings": {
-            "label": "Hoodies",
-            "link": "/collections/bottoms"
-          }
-        },
-        "pill_acc": {
-          "type": "pill",
-          "settings": {
-            "label": "T-Shirts",
-            "link": "/collections/accessories"
-          }
-        }
-      },
-      "block_order": [
-        "pill_na",
-        "pill_bottoms",
-        "pill_acc"
-      ],
-      "settings": {
-        "background_color": "#0a0a0a"
-      }
-    },
     "nc_row_RvXcDp": {
       "type": "nc-collection-row",
       "settings": {
@@ -117,26 +83,9 @@
         "padding_bottom": 20
       }
     },
-    "nc_row2_HmJqWn": {
-      "type": "nc-collection-row",
-      "settings": {
-        "collection": "",
-        "title": "New Arrivals",
-        "show_view_all": true,
-        "max_products": 8,
-        "padding_top": 20,
-        "padding_bottom": 56
-      }
-    },
     "nc_marquee_NkHrYs": {
       "type": "nc-marquee-banner",
       "blocks": {
-        "item_returns": {
-          "type": "item",
-          "settings": {
-            "text": "Easy 7-Day Returns"
-          }
-        },
         "item_secure": {
           "type": "item",
           "settings": {
@@ -145,7 +94,6 @@
         }
       },
       "block_order": [
-        "item_returns",
         "item_secure"
       ],
       "settings": {
@@ -160,6 +108,7 @@
     },
     "nc_lookbook_fLbZqJ": {
       "type": "nc-lookbook-grid",
+      "disabled": true,
       "settings": {
         "title": "Lookbook",
         "subtitle": "The collection in the wild",
@@ -176,13 +125,13 @@
             "title": "Shop",
             "link_label_1": "New Arrivals",
             "link_url_1": "/collections/new-arrivals",
-            "link_label_2": "Tops",
-            "link_url_2": "/collections/tops",
-            "link_label_3": "Bottoms",
+            "link_label_2": "The Drop",
+            "link_url_2": "shopify://collections/all",
+            "link_label_3": "",
             "link_url_3": "/collections/bottoms",
-            "link_label_4": "Accessories",
+            "link_label_4": "",
             "link_url_4": "/collections/accessories",
-            "link_label_5": "Sale",
+            "link_label_5": "",
             "link_url_5": "/collections/sale",
             "link_label_6": "",
             "link_url_6": ""
@@ -205,30 +154,11 @@
             "link_label_6": "",
             "link_url_6": ""
           }
-        },
-        "col_about": {
-          "type": "nav_column",
-          "settings": {
-            "title": "About",
-            "link_label_1": "Our Story",
-            "link_url_1": "/pages/about",
-            "link_label_2": "Sustainability",
-            "link_url_2": "/pages/sustainability",
-            "link_label_3": "Careers",
-            "link_url_3": "/pages/careers",
-            "link_label_4": "",
-            "link_url_4": "",
-            "link_label_5": "",
-            "link_url_5": "",
-            "link_label_6": "",
-            "link_url_6": ""
-          }
         }
       },
       "block_order": [
         "col_shop",
-        "col_help",
-        "col_about"
+        "col_help"
       ],
       "settings": {
         "tagline": "",
@@ -248,9 +178,7 @@
   "order": [
     "nc_hero_BqMxPL",
     "nc_marquee_banner_n7iPaF",
-    "nc_pills_TzKnWY",
     "nc_row_RvXcDp",
-    "nc_row2_HmJqWn",
     "nc_marquee_NkHrYs",
     "nc_lookbook_fLbZqJ",
     "nc_footer_PwGmTu"
