@@ -95,20 +95,12 @@
             "label": "T-Shirts",
             "link": "/collections/accessories"
           }
-        },
-        "pill_sale": {
-          "type": "pill",
-          "settings": {
-            "label": "Sale",
-            "link": "/collections/sale"
-          }
         }
       },
       "block_order": [
         "pill_na",
         "pill_bottoms",
-        "pill_acc",
-        "pill_sale"
+        "pill_acc"
       ],
       "settings": {
         "background_color": "#0a0a0a"
@@ -169,6 +161,15 @@
     "nc_lookbook_fLbZqJ": {
       "type": "nc-lookbook-grid",
       "blocks": {
+        "media_fXd3hi": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/nawa.png",
+            "video_url": "",
+            "instagram_url": "https://www.instagram.com/reel/DYI8-pnTHzt/?utm_source=ig_web_copy_link"
+          }
+        },
         "media_kYKQM3": {
           "type": "media",
           "settings": {
@@ -179,6 +180,7 @@
         }
       },
       "block_order": [
+        "media_fXd3hi",
         "media_kYKQM3"
       ],
       "settings": {
