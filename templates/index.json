@@ -160,29 +160,6 @@
     },
     "nc_lookbook_fLbZqJ": {
       "type": "nc-lookbook-grid",
-      "blocks": {
-        "media_fXd3hi": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/nawa.png",
-            "video_url": "",
-            "instagram_url": "https://www.instagram.com/reel/DYI8-pnTHzt/?utm_source=ig_web_copy_link"
-          }
-        },
-        "media_kYKQM3": {
-          "type": "media",
-          "settings": {
-            "media_type": "image",
-            "video_url": "",
-            "instagram_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "media_fXd3hi",
-        "media_kYKQM3"
-      ],
       "settings": {
         "title": "Lookbook",
         "subtitle": "The collection in the wild",
