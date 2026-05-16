@@ -87,20 +87,34 @@
     "nc_marquee_NkHrYs": {
       "type": "nc-marquee-banner",
       "blocks": {
+        "item_iAenEW": {
+          "type": "item",
+          "settings": {
+            "text": "Built to Last"
+          }
+        },
+        "item_q8wjC9": {
+          "type": "item",
+          "settings": {
+            "text": "Legacy"
+          }
+        },
         "item_secure": {
           "type": "item",
           "settings": {
-            "text": "Secure Checkout"
+            "text": ""
           }
         },
         "item_NgnmFQ": {
           "type": "item",
           "settings": {
-            "text": "Secure Checkout"
+            "text": "The Culture"
           }
         }
       },
       "block_order": [
+        "item_iAenEW",
+        "item_q8wjC9",
         "item_secure",
         "item_NgnmFQ"
       ],
