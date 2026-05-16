@@ -93,30 +93,30 @@
             "text": "Built to Last"
           }
         },
+        "item_NgnmFQ": {
+          "type": "item",
+          "settings": {
+            "text": "Crafted For The Culture"
+          }
+        },
         "item_q8wjC9": {
           "type": "item",
           "settings": {
             "text": "Legacy"
           }
         },
-        "item_secure": {
+        "item_PaNb6t": {
           "type": "item",
           "settings": {
-            "text": ""
-          }
-        },
-        "item_NgnmFQ": {
-          "type": "item",
-          "settings": {
-            "text": "The Culture"
+            "text": "Sovereign"
           }
         }
       },
       "block_order": [
         "item_iAenEW",
+        "item_NgnmFQ",
         "item_q8wjC9",
-        "item_secure",
-        "item_NgnmFQ"
+        "item_PaNb6t"
       ],
       "settings": {
         "speed": 28,
