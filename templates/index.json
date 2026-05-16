@@ -80,7 +80,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h5><em><strong>You grew up code-switching. Translating yourself for rooms that weren't built for you. Shrinking so others could be comfortable.<br/><br/>Nawab means nobility. It was never lost — just waiting.<br/><br/>This is for everyone who stopped shrinking.<br/></strong></em></h5>",
+            "text": "<h5><strong>You grew up code-switching. Translating yourself for rooms that weren't built for you. Shrinking so others could be comfortable.<br/><br/>Nawab means nobility. It was never lost — just waiting.<br/><br/>This is for everyone who stopped shrinking.<br/></strong></h5>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
