@@ -227,9 +227,9 @@
           "settings": {
             "title": "Help",
             "link_label_1": "Shipping & Returns",
-            "link_url_1": "/policies/shipping-policy",
+            "link_url_1": "shopify://pages/shipping",
             "link_label_2": "Size Guide",
-            "link_url_2": "/pages/size-guide",
+            "link_url_2": "/pages/sizing",
             "link_label_3": "FAQ",
             "link_url_3": "/pages/faq",
             "link_label_4": "Contact Us",
