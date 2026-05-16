@@ -207,9 +207,9 @@
         "col_shop": {
           "type": "nav_column",
           "settings": {
-            "title": "Shop",
-            "link_label_1": "New Arrivals",
-            "link_url_1": "/collections/new-arrivals",
+            "title": "",
+            "link_label_1": "",
+            "link_url_1": "",
             "link_label_2": "The Drop",
             "link_url_2": "shopify://collections/all",
             "link_label_3": "",
