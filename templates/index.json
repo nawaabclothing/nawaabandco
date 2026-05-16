@@ -22,9 +22,9 @@
         "mobile_image_3": "shopify://shop_images/mob5_4e1d1d46-6838-4272-b181-50d6c412dcfd.png",
         "mobile_image_4": "shopify://shop_images/mob4.png",
         "mobile_image_5": "shopify://shop_images/mob2_3.png",
-        "slide_speed": 4,
+        "slide_speed": 3,
         "height": 100,
-        "overlay_opacity": 60,
+        "overlay_opacity": 85,
         "cta_text": "The Drop",
         "cta_link": "/collections/all"
       }
