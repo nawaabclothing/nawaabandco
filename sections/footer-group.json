@@ -18,8 +18,8 @@
           "type": "email-signup",
           "name": "Email Signup",
           "settings": {
-            "width": "fill",
-            "custom_width": 100,
+            "width": "custom",
+            "custom_width": 50,
             "inherit_color_scheme": true,
             "color_scheme": "",
             "heading": "",
