@@ -229,107 +229,54 @@
       }
     },
     "nc_founding_members": {
-      "type": "section",
+      "type": "nc-founding-members",
       "blocks": {
-        "fm_heading": {
-          "type": "text",
-          "name": "t:names.text",
+        "perk_1": {
+          "type": "perk",
           "settings": {
-            "text": "<h2>Founding Members</h2><p>37 / 100 spots claimed</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "heading",
-            "font": "var(--font-heading--family)",
-            "font_size": "2rem",
-            "line_height": "normal",
-            "letter_spacing": "0.05em",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#000000",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "Priority access to future drops"
+          }
         },
-        "fm_body": {
-          "type": "text",
-          "name": "t:names.text",
+        "perk_2": {
+          "type": "perk",
           "settings": {
-            "text": "<p>The first 100 members of The Company will receive:</p><ul><li>Priority access to future drops</li><li>Early access before public release</li><li>Founding member recognition</li><li>Access to member-only releases</li></ul>",
-            "width": "fit-content",
-            "max_width": "600px",
-            "alignment": "center",
-            "type_preset": "paragraph",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#000000",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "Early access before public release"
+          }
         },
-        "fm_button": {
-          "type": "button",
+        "perk_3": {
+          "type": "perk",
           "settings": {
-            "label": "Applications Open →",
-            "link": "/pages/request-access",
-            "open_in_new_tab": false,
-            "style_class": "button",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "text": "Founding member recognition"
+          }
+        },
+        "perk_4": {
+          "type": "perk",
+          "settings": {
+            "text": "Access to member-only releases"
+          }
         }
       },
       "block_order": [
-        "fm_heading",
-        "fm_body",
-        "fm_button"
+        "perk_1",
+        "perk_2",
+        "perk_3",
+        "perk_4"
       ],
       "name": "Founding Members",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 24,
-        "section_width": "full-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-2",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#000000",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 80,
-        "padding-block-end": 80
+        "eyebrow": "The Company",
+        "heading": "Founding Members",
+        "claimed": 37,
+        "total": 100,
+        "caption": "spots claimed",
+        "intro": "The first 100 members of The Company receive:",
+        "button_label": "Applications Open →",
+        "button_link": "/pages/request-access",
+        "bg_color": "#0a0a0b",
+        "text_color": "#f4f1ea",
+        "accent_color": "#f4f1ea",
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "nc_row_RvXcDp": {
