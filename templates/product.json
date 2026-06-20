@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -116,13 +116,13 @@
                     "max_width": "normal",
                     "alignment": "left",
                     "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font": "var(--font-primary--family)",
+                    "font_size": "",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "color": "var(--color-foreground)",
+                    "color": "var(--color-foreground-heading)",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -143,7 +143,7 @@
                     "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font_size": "1.125rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -275,7 +275,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>You may also like </h3>",
+            "text": "<h3>You may also like</h3>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
