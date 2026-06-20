@@ -9,6 +9,98 @@
  */
 {
   "sections": {
+    "nc_modern_nobility": {
+      "type": "section",
+      "blocks": {
+        "mn_heading": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<h1>MODERN NOBILITY</h1><h5>For everyone who stopped shrinking.</h5>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "heading",
+            "font": "var(--font-heading--family)",
+            "font_size": "2.5rem",
+            "line_height": "normal",
+            "letter_spacing": "0.05em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#000000",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "mn_btn_shop": {
+          "type": "button",
+          "settings": {
+            "label": "Shop Drop 001",
+            "link": "/collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "mn_btn_learn": {
+          "type": "button",
+          "settings": {
+            "label": "Apply to The Company",
+            "link": "/pages/the-company",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "mn_heading",
+        "mn_btn_shop",
+        "mn_btn_learn"
+      ],
+      "name": "Modern Nobility",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 28,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#000000",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
     "nc_hero_BqMxPL": {
       "type": "nc-hero-slideshow",
       "settings": {
@@ -35,25 +127,25 @@
         "item_m4jryr": {
           "type": "item",
           "settings": {
-            "text": "Power"
+            "text": "Discipline"
           }
         },
         "item_Edd4W3": {
           "type": "item",
           "settings": {
-            "text": "Dominance"
+            "text": "Presence"
           }
         },
         "item_cJMnat": {
           "type": "item",
           "settings": {
-            "text": "Precision"
+            "text": "Quiet Confidence"
           }
         },
         "item_CQHj86": {
           "type": "item",
           "settings": {
-            "text": "Control"
+            "text": "Nobility"
           }
         }
       },
@@ -65,7 +157,7 @@
       ],
       "settings": {
         "speed": 28,
-        "separator": "✦",
+        "separator": "·",
         "background_color": "#0a0a0a",
         "text_color": "#ffffff",
         "aria_label": "Store announcements",
@@ -80,7 +172,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h5><strong>You grew up code-switching. Translating yourself for rooms that weren't built for you. Shrinking so others could be comfortable.<br/><br/>Nawab means nobility. It was never lost — just waiting.<br/><br/>This is for everyone who stopped shrinking.<br/></strong></h5>",
+            "text": "<h5><strong>You grew up code-switching. Translating yourself for rooms that weren’t built for you. Shrinking so others could be comfortable.<br/><br/>Nawab means nobility. It was never lost — just waiting.<br/><br/>This is for everyone who stopped shrinking.<br/></strong></h5>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -136,15 +228,196 @@
         "padding-block-end": 48
       }
     },
+    "nc_founding_members": {
+      "type": "section",
+      "blocks": {
+        "fm_heading": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<h2>Founding Members</h2><p>37 / 100 spots claimed</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "heading",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "normal",
+            "letter_spacing": "0.05em",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#000000",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "fm_body": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>The first 100 members of The Company will receive:</p><ul><li>Priority access to future drops</li><li>Early access before public release</li><li>Founding member recognition</li><li>Access to member-only releases</li></ul>",
+            "width": "fit-content",
+            "max_width": "600px",
+            "alignment": "center",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#000000",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "fm_button": {
+          "type": "button",
+          "settings": {
+            "label": "Applications Open →",
+            "link": "/pages/request-access",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "fm_heading",
+        "fm_body",
+        "fm_button"
+      ],
+      "name": "Founding Members",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-2",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#000000",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 80
+      }
+    },
     "nc_row_RvXcDp": {
       "type": "nc-collection-row",
       "settings": {
         "collection": "all",
         "title": "The Drop - 001",
-        "show_view_all": false,
+        "show_view_all": true,
         "max_products": 8,
         "padding_top": 8,
         "padding_bottom": 24
+      }
+    },
+    "nc_story_interstitial": {
+      "type": "section",
+      "blocks": {
+        "story_text": {
+          "type": "text",
+          "name": "story",
+          "settings": {
+            "text": "<h2>Nine years. Four pieces. One decision to stop shrinking.</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "heading",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#000000",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "story_link": {
+          "type": "button",
+          "settings": {
+            "label": "Our Story →",
+            "link": "/pages/about-us",
+            "open_in_new_tab": false,
+            "style_class": "button",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "story_text",
+        "story_link"
+      ],
+      "name": "The Story",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#000000",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 80,
+        "padding-block-end": 80
       }
     },
     "nc_marquee_NkHrYs": {
@@ -183,7 +456,7 @@
       ],
       "settings": {
         "speed": 28,
-        "separator": "✦",
+        "separator": "·",
         "background_color": "#0a0a0a",
         "text_color": "#ffffff",
         "aria_label": "Store announcements",
@@ -193,10 +466,93 @@
     },
     "nc_lookbook_fLbZqJ": {
       "type": "nc-lookbook-grid",
-      "disabled": true,
+      "blocks": {
+        "media_XfCTyy": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/F71C630B-A566-4012-81DD-85E800771150.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_J4tf8i": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/black_tshirt_3.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_z6HQra": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/76B2ECEE-2DCE-4E91-A51D-9CDCCF74DD55.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_8EiKn4": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/lookbook3.jpg",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_pgzwP9": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/BEFE51B6-45BC-4FC9-9F14-ED4BE017AD09.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_6w3zEX": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/8D3F45A5-3C12-49EA-8E19-50BF35B69435_c44708e0-581e-4414-92a6-d87abe9f4179.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_ezUrL7": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/lookbook4.jpg",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        },
+        "media_LMGXjE": {
+          "type": "media",
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_2_2026_11_17_30_PM_09cc2ff5-c6ca-4c9a-bcf3-af65d1b30bf3.png",
+            "video_url": "",
+            "instagram_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "media_XfCTyy",
+        "media_J4tf8i",
+        "media_z6HQra",
+        "media_8EiKn4",
+        "media_pgzwP9",
+        "media_6w3zEX",
+        "media_ezUrL7",
+        "media_LMGXjE"
+      ],
       "settings": {
-        "title": "Lookbook",
-        "subtitle": "The collection in the wild",
+        "title": "The Culture",
+        "subtitle": "Drop 001",
         "padding_top": 64,
         "padding_bottom": 64
       }
@@ -217,7 +573,7 @@
             "link_label_4": "",
             "link_url_4": "",
             "link_label_5": "",
-            "link_url_5": "/collections/sale",
+            "link_url_5": "",
             "link_label_6": "",
             "link_url_6": ""
           }
@@ -227,13 +583,13 @@
           "settings": {
             "title": "Help",
             "link_label_1": "Shipping & Returns",
-            "link_url_1": "shopify://pages/shipping",
-            "link_label_2": "Size Guide",
-            "link_url_2": "/pages/sizing",
-            "link_label_3": "FAQ",
-            "link_url_3": "/pages/faq",
-            "link_label_4": "Contact Us",
-            "link_url_4": "/pages/contact",
+            "link_url_1": "/pages/shipping-returns",
+            "link_label_2": "FAQ",
+            "link_url_2": "/pages/faq",
+            "link_label_3": "Contact Us",
+            "link_url_3": "mailto:Support@nawabcompany.com",
+            "link_label_4": "",
+            "link_url_4": "",
             "link_label_5": "",
             "link_url_5": "",
             "link_label_6": "",
@@ -246,11 +602,11 @@
         "col_help"
       ],
       "settings": {
-        "tagline": "",
+        "tagline": "Nobility was never lost. Just waiting.",
         "show_newsletter": true,
-        "newsletter_heading": "Join the Culture",
-        "newsletter_placeholder": "",
-        "newsletter_success": "Welcome.",
+        "newsletter_heading": "Apply to The Company",
+        "newsletter_placeholder": "Your email",
+        "newsletter_success": "Welcome to The Company.",
         "instagram_url": "https://www.instagram.com/nawab_and_co",
         "twitter_url": "",
         "facebook_url": "",
@@ -261,10 +617,13 @@
     }
   },
   "order": [
+    "nc_modern_nobility",
     "nc_hero_BqMxPL",
     "nc_marquee_banner_n7iPaF",
     "section_WPrkTf",
+    "nc_founding_members",
     "nc_row_RvXcDp",
+    "nc_story_interstitial",
     "nc_marquee_NkHrYs",
     "nc_lookbook_fLbZqJ",
     "nc_footer_PwGmTu"
