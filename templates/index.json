@@ -13,7 +13,7 @@
       "type": "nc-hero-editorial",
       "settings": {
         "hero_image": "shopify://shop_images/hero1.png",
-        "height": 86,
+        "height": 90,
         "eyebrow_a": "Drop 001",
         "eyebrow_b": "Modern Nobility",
         "title_line1": "For everyone who",
@@ -25,6 +25,12 @@
         "cta2_link": "/pages/the-company",
         "text_color": "#f4f1ea",
         "accent_color": "#f4f1ea"
+      }
+    },
+    "nc_founding_members_strip": {
+      "type": "nc-founding-members-strip",
+      "settings": {
+        "link": "/pages/request-access"
       }
     },
     "nc_marquee_banner_n7iPaF": {
@@ -44,32 +50,6 @@
         "aria_label": "Store announcements",
         "padding_top": 14,
         "padding_bottom": 14
-      }
-    },
-    "nc_founding_members": {
-      "type": "nc-founding-members",
-      "blocks": {
-        "perk_1": { "type": "perk", "settings": { "text": "Priority access to future drops" } },
-        "perk_2": { "type": "perk", "settings": { "text": "Early access before public release" } },
-        "perk_3": { "type": "perk", "settings": { "text": "Founding member recognition" } },
-        "perk_4": { "type": "perk", "settings": { "text": "Access to member-only releases" } }
-      },
-      "block_order": ["perk_1","perk_2","perk_3","perk_4"],
-      "name": "Founding Members",
-      "settings": {
-        "eyebrow": "The Company",
-        "heading": "Founding Members",
-        "claimed": 37,
-        "total": 100,
-        "caption": "spots claimed",
-        "intro": "The first 100 members of The Company receive:",
-        "button_label": "Applications Open →",
-        "button_link": "/pages/request-access",
-        "bg_color": "#0a0a0b",
-        "text_color": "#f4f1ea",
-        "accent_color": "#f4f1ea",
-        "padding_top": 80,
-        "padding_bottom": 80
       }
     },
     "nc_row_RvXcDp": {
@@ -249,8 +229,8 @@
   },
   "order": [
     "nc_hero_editorial",
+    "nc_founding_members_strip",
     "nc_marquee_banner_n7iPaF",
-    "nc_founding_members",
     "nc_row_RvXcDp",
     "nc_story_interstitial",
     "nc_marquee_NkHrYs",

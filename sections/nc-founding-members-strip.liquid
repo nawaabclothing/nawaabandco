@@ -1,0 +1,28 @@
+<style>
+  #fm-{{ section.id }}{background:#0a0a0b;border-top:1px solid rgba(244,241,234,0.08);padding:20px clamp(24px,5vw,64px);}
+  #fm-{{ section.id }} .fm-inner{display:flex;align-items:center;justify-content:space-between;gap:28px;max-width:100%;margin:0 auto;color:#f4f1ea;}
+  #fm-{{ section.id }} .fm-left{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;}
+  #fm-{{ section.id }} .fm-counter{font-size:clamp(14px,1.6vw,18px);font-weight:600;}
+  #fm-{{ section.id }} .fm-label{font-size:11px;opacity:0.68;letter-spacing:0.24em;}
+  #fm-{{ section.id }} .fm-link{color:#f4f1ea;text-decoration:none;border-bottom:1px solid rgba(244,241,234,0.55);padding-bottom:3px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;transition:opacity 0.2s;}
+  #fm-{{ section.id }} .fm-link:hover{opacity:0.8;border-bottom-color:#f4f1ea;}
+</style>
+<section id="fm-{{ section.id }}">
+  <div class="fm-inner">
+    <div class="fm-left">
+      <span class="fm-counter">37 / 100</span>
+      <span class="fm-label">Founding Member Spots Claimed</span>
+    </div>
+    <a href="{{ section.settings.link }}" class="fm-link">Claim Your Place →</a>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Founding Members Strip",
+  "tag": "section",
+  "settings": [
+    {"type":"text","id":"link","label":"Link","default":"/pages/request-access"}
+  ],
+  "presets": [{"name":"Founding Members Strip"}]
+}
+{% endschema %}
